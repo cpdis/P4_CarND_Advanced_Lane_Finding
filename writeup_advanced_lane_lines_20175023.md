@@ -42,11 +42,11 @@ The pipeline that will be built on these methods is as follows:
 
 The code for this step is contained in the first code cell of the Jupyter notebook under the heading **Calibrate camera and correct distortion**. The method for camera calibration shown in the classroom provided a template for calibration in this project. As such, the methods from the classroom were wrapped in functions so that they could be used in a pipeline.
 
-'calibrate()' starts by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. It is assumed that the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image. Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image. `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection. Images for which corners were found were appended to calibration_success[] in order to view later. The calibration images for which corners were found are shown below:
+`calibrate()` starts by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. It is assumed that the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image. Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image. `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection. Images for which corners were found were appended to calibration_success[] in order to view later. The calibration images for which corners were found are shown below:
 
 ![Calibration Images][image1]
 
-Then, the function 'calibrate_and_undistort()', used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result:
+Then, the function `calibrate_and_undistort()`, used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result:
 
 ![Undistorted][image2]
 
@@ -70,7 +70,7 @@ The first two code blocks below the **Color and Gradient Thresholding** show how
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform is in the first code block after the **Perpective Transform** heading. The function takes an input image and determines the 'src' and 'dst' coordinates based on the size of the image and a chosen offset. The code for the 'src' and 'dst' coordinates is below:
+The code for my perspective transform is in the first code block after the **Perpective Transform** heading. The function takes an input image and determines the `src` and `dst` coordinates based on the size of the image and a chosen offset. The code for the `src` and `dst` coordinates is below:
 
 ```python
     offset = 100.
@@ -97,11 +97,11 @@ In addition, I check the curved lane line test images as well to verify that the
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-I identified the lane line pixels using the method provided to us in the classroom. This is shown in the code blocks beneath the heading 'Lane Line Tracking'. 'find_lines()' takes a binary, warped image and blindly searches for the lane line pixels. 'find_lines_post()' is called when the position of the lane lines are known. A search within the specified margin is used rather than blindly searching.
+I identified the lane line pixels using the method provided to us in the classroom. This is shown in the code blocks beneath the heading Lane **Line Tracking**. `find_lines()` takes a binary, warped image and blindly searches for the lane line pixels. `find_lines_post()` is called when the position of the lane lines are known. A search within the specified margin is used rather than blindly searching.
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-The functions 'calc_radius()' and 'calc_offset()' calculate the radius of curvature and the offset from the center of the lane, respectively. The code for calculating the radius of curvature is shown below:
+The functions `calc_radius()` and `calc_offset()` calculate the radius of curvature and the offset from the center of the lane, respectively. The code for calculating the radius of curvature is shown below:
 
 ```python
   y_eval = binary_warped.shape[0] - 1
@@ -119,7 +119,7 @@ The functions 'calc_radius()' and 'calc_offset()' calculate the radius of curvat
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this using the functions 'overlay_lane()' and 'overlay_text()'. A test image with the lane and text overlaid is shown below:
+I implemented this using the functions `overlay_lane()` and `overlay_text()`. A test image with the lane and text overlaid is shown below:
 
 ![Overlay][image9]
 
@@ -129,7 +129,7 @@ I implemented this using the functions 'overlay_lane()' and 'overlay_text()'. A 
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-The full pipeline is implemented in the 'AdvancedPipeline()' class.
+The full pipeline is implemented in the `AdvancedPipeline()` class.
 
 Here's a [link to my video. ](./P4_Output.mp4)
 
